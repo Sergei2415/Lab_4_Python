@@ -1,0 +1,10 @@
+https://www.kaggle.com/datasets/mekhdigakhramanian/russiacovid-19/
+
+6940757048:AAGbsleJvCmsi0aNGhTSs-7gX66TfEMi32w - токен бота
+
+ctrl + shift + p -> select interpreter
+pip install requests
+pip install python-telegram-bot --upgrade
+pip install matplotlib
+pip install pandas
+возможно нужны другие, смотреть по импорту библиотек в коде(вверху), там обычно ошибки, если нет
