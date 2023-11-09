@@ -2,21 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
-
-#print(mpl.get_backend())
-#fig, ax = plt.subplots()  # Create a figure containing a single axes.
-#ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the ax
-#plt.show()
+from scipy.stats import pearsonr, ttest_ind
 
 data = pd.read_csv('./Russia-Covid19-v2.csv', nrows=100)
 
-#plt.hist(data['total infected'], bins=10, edgecolor='black')
-#plt.title('Гистограмма данных')
-#plt.xlabel('Значения')
-#plt.ylabel('Частота')
-#plt.show()
-st1 = data['sick now']
-st2 = data['new infections']
+st1 = data['new infections']
+st2 = data['sick now']
 st3 = []
 for i in range(len(st2)):
     st3.append((st1[i]+st2[i])/2)
@@ -26,16 +17,16 @@ for i in range(len(st2)):
 plt.figure(figsize=(10, 6))  # Устанавливаем размер графика
 
 # График с линиями (например, для временных рядов)
-plt.plot(st1, label='total infected', linestyle='-', marker='o')
-plt.plot(st2, label='total length / cm', linestyle='--', marker='x')
-plt.plot(st3, label='sr', linestyle='--', marker='x')
+plt.plot(st1, label='new infections', linestyle='-', marker='o')
+plt.plot(st2, label='sick now', linestyle='--', marker='x')
+plt.plot(st3, label='medium shedding', linestyle='--', marker='x')
 
 
 
 # Добавление подписей к осям и заголовка
-plt.xlabel('X-ось')
-plt.ylabel('Y-ось')
-plt.title('График данных из CSV-файла')
+plt.xlabel('Дни')
+plt.ylabel('Количество человек')
+plt.title('График всего инфецированных/смерти')
 
 # Добавление легенды
 plt.legend()
@@ -43,3 +34,13 @@ plt.legend()
 # Отображение графика
 plt.grid(True)
 plt.show()
+
+# Коэффициент корреляции Пирсона
+corr, _ = pearsonr(st1,st2)
+print("Коэффициент корреляции:", corr)
+
+# t-тест
+ttest_result = ttest_ind(st1, st2)
+print("t-статистика:", ttest_result.statistic)
+print("p-value:", ttest_result.pvalue)
+
