@@ -17,16 +17,16 @@ for i in range(len(st2)):
 plt.figure(figsize=(10, 6))  # Устанавливаем размер графика
 
 # График с линиями (например, для временных рядов)
-plt.plot(st1, label='new infections', linestyle='-', marker='o')
-plt.plot(st2, label='sick now', linestyle='--', marker='x')
-plt.plot(st3, label='medium shedding', linestyle='--', marker='x')
+plt.plot(st1, label='Новые инфицированные', linestyle='-', marker='o')
+plt.plot(st2, label='Инфицированны сейчас', linestyle='--', marker='o')
+plt.plot(st3, label='Среднее арифметическое', linestyle='--', marker='o')
 
 
 
 # Добавление подписей к осям и заголовка
 plt.xlabel('Дни')
 plt.ylabel('Количество человек')
-plt.title('График всего инфецированных/смерти')
+plt.title('График новые инфицированные/инфицированны сейчас')
 
 # Добавление легенды
 plt.legend()
